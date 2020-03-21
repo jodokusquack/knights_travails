@@ -4,6 +4,7 @@ class Board
     @board = create_new_board()
   end
 
+  # the board is an 8x8 array of squares
   def create_new_board()
     board = []
     8.times do |row_number|
@@ -18,16 +19,19 @@ class Board
     board
   end
 
+  # new_piece takes the piece as a String of the same name as the Class
+  # you want to create
   def new_piece(piece, color, pos)
     square = @board[pos[0]][pos[1]]
     square.piece = Object.const_get(piece).new(pos, color)
   end
 
+  # move_pieve takes two positions and moves a piece
   def move_piece(from, to)
-    if Square.new(from).illegal?
+    if Square.illegal? from
       puts "Starting square is out-of-bounds!"
       return false
-    elsif Square.new(to).illegal?
+    elsif Square.illegal? to
       puts "Ending square is out-of-bounds!"
       return false
     end

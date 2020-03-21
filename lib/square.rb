@@ -10,7 +10,6 @@ class Square
     pos[1] <= 7)
   end
 
-
   def initialize(pos, piece=nil)
     @piece = piece
     @pos = pos
@@ -27,18 +26,20 @@ class Square
     @piece == nil
   end
 
+  # to compare the positions of two squares
   def equal_pos?(other)
     @pos == other.pos
   end
 
   def to_s
+    # if the square is empty draw either black or white
     if @piece.nil?
-      # if (pos[0] + pos[1]) % 2 == 0
-      #   "░"
-      # else
-      #   "▓"
-      # end
-      @pos.to_s
+      if (pos[0] + pos[1]) % 2 == 0
+        "░"
+      else
+        "▓"
+      end
+    # otherwise draw the piece
     else
       @piece.to_s
     end
